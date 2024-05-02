@@ -1,23 +1,43 @@
 package SchoolProject.Backend.controller;
 
 import SchoolProject.Backend.dto.MemberDTO;
+import SchoolProject.Backend.entity.MemberEntity;
+import SchoolProject.Backend.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class HomeController {
-    //기본 페이지 요청
+    private final MemberService memberService;
+
+    public HomeController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
     @GetMapping("/")
-    public String index(){
-        return "index"; //templates 폴더의 index.html을 찾아감
+    public String index() {
+        return "index";
     }
 
     @PostMapping("/")
-    public String save(@ModelAttribute MemberDTO memberDTO) {
+    public String searchUniversities(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
-        //memberService.save(memberDTO);
+        String dormitory = (memberDTO.getDormitory() != null) ? memberDTO.getDormitory() : "No";
+        List<MemberEntity> universities = memberService.findUniversitiesByCountryAndDormitory(memberDTO.getCountry(), dormitory);
+        if (universities.isEmpty()) {
+            System.out.println("No universities");
+        } else {
+            for (MemberEntity university : universities) {
+                System.out.printf("Matching university: %s, Country: %s, Dormitory: %s\n",
+                        university.getName(), university.getCountry(), university.getDormitory());
+            }
+        }
         return "index";
-    };
+    }
+
+
 }

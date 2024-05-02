@@ -1,30 +1,41 @@
 package SchoolProject.Backend.entity;
 
-import SchoolProject.Backend.dto.MemberDTO;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Entity
-@Setter
 @Getter
-@Table(name = "member_table")
+@Setter
+@Table(name = "backend")
 public class MemberEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 ID 값을 관리
+    private Long id;  // 고유 식별자 필드 추가
 
-    @Column(unique = true)
+    @Column(name = "country")
     private String country;
 
-    @Column
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "dormitory")
     private String dormitory;
 
-    public static MemberEntity toMemberEntity(MemberDTO memberDTO){
-        MemberEntity memberEntity = new MemberEntity();
-        memberEntity.setCountry(memberDTO.getCountry());
-        memberEntity.setDormitory(memberDTO.getDormitory());
-        return memberEntity;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        MemberEntity that = (MemberEntity) o;
+        return Objects.equals(country, that.country) &&
+                Objects.equals(dormitory, that.dormitory);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(country, dormitory);
     }
 
 }
