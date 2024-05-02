@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Universities</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
+
+    <style>
+        body { font-family: Arial, sans-serif; }
+    </style>
+</head>
+<body>
+    <h1>대학 추천 사이트</h1>
+    <form id="searchForm" method="post" action="/">
+        <label for="country">Desired Country:</label>
+        <select id="country" name="country" required>
+            <option value="China">China</option>
+            <option value="Japan">Japan</option>
+            <option value="Taiwan">Taiwan</option>
+        </select>
+
+        <label for="date-range">Dispatch Period:</label>
+        <input type="text" id="date-range" name="date_range" placeholder="Select Start and End Date" readonly>
+
+        <label for="dormitory">Dormitory:</label>
+        <input type="checkbox" id="dormitory" name="dormitory"> Yes
+
+        <button type="submit">Search</button>
+    </form>
+
+    <div id="results">
+        <h3>Example Results</h3>
+        <ul>
+            <li>
+                <img src="university1.jpg" alt="University 1 Image" style="width:200px;height:120px;">
+                <h4>Beijing University</h4>
+                <p><strong>Location:</strong> Beijing, China</p>
+                <p><strong>Dormitory Available:</strong> Yes</p>
+                <p><strong>Matching Score:</strong> 85%</p>
+            </li>
+            <li>
+                <img src="university2.jpg" alt="University 2 Image" style="width:200px;height:120px;">
+                <h4>Tokyo Institute of Technology</h4>
+                <p><strong>Location:</strong> Tokyo, Japan</p>
+                <p><strong>Dormitory Available:</strong> No</p>
+                <p><strong>Matching Score:</strong> 80%</p>
+            </li>
+        </ul>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+    <script>
+        const picker = new Litepicker({ 
+            element: document.getElementById('date-range'),
+            singleMode: false,
+            allowRepick: true,
+            format: 'YYYY-MM-DD'
+        });
+    </script>
+</body>
+</html>
+
+
