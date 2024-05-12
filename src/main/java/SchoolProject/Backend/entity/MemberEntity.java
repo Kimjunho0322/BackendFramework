@@ -12,8 +12,8 @@ import java.util.Objects;
 @Table(name = "backend")
 public class MemberEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 자동으로 ID 값을 관리
-    private Long id;  // 고유 식별자 필드 추가
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "country")
     private String country;
@@ -24,18 +24,22 @@ public class MemberEntity {
     @Column(name = "dormitory")
     private String dormitory;
 
+    @Column(name = "period")
+    private String period;
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof MemberEntity)) return false;
         MemberEntity that = (MemberEntity) o;
-        return Objects.equals(country, that.country) &&
-                Objects.equals(dormitory, that.dormitory);
+        return Objects.equals(id, that.id) &&
+                Objects.equals(country, that.country) &&
+                Objects.equals(dormitory, that.dormitory) &&
+                Objects.equals(period, that.period);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(country, dormitory);
+        return Objects.hash(id, country, dormitory, period);
     }
-
 }

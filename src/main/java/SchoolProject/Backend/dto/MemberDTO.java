@@ -9,12 +9,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-
-
 public class MemberDTO {
     private Long id;
     private String country;
     private String dormitory;
+    private String period;
 }
-
-

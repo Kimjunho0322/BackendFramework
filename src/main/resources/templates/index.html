@@ -15,16 +15,20 @@
     <form id="searchForm" method="post" action="/">
         <label for="country">Desired Country:</label>
         <select id="country" name="country" required>
-            <option value="China">중국</option>
-            <option value="Japan">일본</option>
-            <option value="Taiwan">대만</option>
+            <option value="China">China</option>
+            <option value="Japan">Japan</option>
+            <option value="Taiwan1">Taiwan</option>
         </select>
 
-        <label for="date-range">Dispatch Period:</label>
-        <input type="text" id="date-range" name="date_range" placeholder="Select Start and End Date" readonly>
+        <label for="period">Desired Period:</label>
+        <select id="period" name="period" required>
+            <option value="Semester">1 Semester</option>
+            <option value="Year">1 Year</option>
+        </select>
+
 
         <label for="dormitory">Dormitory:</label>
-        <input type="checkbox" id="dormitory" name="dormitory" value="Yes"> Yes <!-- 체크 시 Yes 값만 전송 -->
+        <input type="checkbox" id="dormitory" name="dormitory" value="Yes"> Yes
 
         <button type="submit">Search</button>
     </form>
@@ -51,13 +55,12 @@
 
     <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
     <script>
-        const picker = new Litepicker({
+        const picker = new Litepicker({ 
             element: document.getElementById('date-range'),
             singleMode: false,
             allowRepick: true,
             format: 'YYYY-MM-DD'
         });
-
     </script>
 </body>
 </html>

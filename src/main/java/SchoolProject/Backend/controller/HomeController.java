@@ -27,17 +27,15 @@ public class HomeController {
     public String searchUniversities(@ModelAttribute MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
         String dormitory = (memberDTO.getDormitory() != null) ? memberDTO.getDormitory() : "No";
-        List<MemberEntity> universities = memberService.findUniversitiesByCountryAndDormitory(memberDTO.getCountry(), dormitory);
+        List<MemberEntity> universities = memberService.findUniversitiesByCountryDormitoryAndPeriod(memberDTO.getCountry(), dormitory, memberDTO.getPeriod());
         if (universities.isEmpty()) {
-            System.out.println("No universities");
+            System.out.println("No universities found");
         } else {
             for (MemberEntity university : universities) {
-                System.out.printf("Matching university: %s, Country: %s, Dormitory: %s\n",
-                        university.getName(), university.getCountry(), university.getDormitory());
+                System.out.printf("Matching university: %s, Country: %s, Dormitory: %s, Period: %s\n",
+                        university.getName(), university.getCountry(), university.getDormitory(), university.getPeriod());
             }
         }
         return "index";
     }
-
-
 }

@@ -21,19 +21,19 @@ public class MemberService {
         this.memberRepository = memberRepository;
     }
 
-    public List<MemberEntity> findUniversitiesByCountryAndDormitory(String country, String dormitory) {
-        List<MemberEntity> universities = memberRepository.findByCountryAndDormitory(country, dormitory);
+    public List<MemberEntity> findUniversitiesByCountryDormitoryAndPeriod(String country, String dormitory, String period) {
+        List<MemberEntity> universities = memberRepository.findByCountryDormitoryAndPeriod(country, dormitory, period);
         System.out.println("Query returned " + universities.size() + " universities");
+
         for (MemberEntity university : universities) {
-            System.out.println("University fetched: " + university.getName() + ", " + university.getCountry() + ", " + university.getDormitory());
+            System.out.println("University fetched: " + university.getName() + ", " + university.getCountry() + ", " + university.getDormitory() + ", Period: " + university.getPeriod());
         }
         Set<MemberEntity> uniqueUniversities = new HashSet<>(universities);
         System.out.println("Unique universities count after removing duplicates: " + uniqueUniversities.size());
+
         for (MemberEntity uniqueUniversity : uniqueUniversities) {
-            System.out.println("Unique university: " + uniqueUniversity.getName() + ", " + uniqueUniversity.getCountry() + ", " + uniqueUniversity.getDormitory());
+            System.out.println("Unique university: " + uniqueUniversity.getName() + ", " + uniqueUniversity.getCountry() + ", " + uniqueUniversity.getDormitory() + ", Period: " + uniqueUniversity.getPeriod());
         }
         return new ArrayList<>(uniqueUniversities);
     }
-
-
 }
