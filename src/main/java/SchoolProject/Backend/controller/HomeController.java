@@ -3,14 +3,12 @@ package SchoolProject.Backend.controller;
 import SchoolProject.Backend.dto.MemberDTO;
 import SchoolProject.Backend.entity.MemberEntity;
 import SchoolProject.Backend.service.MemberService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController // RestController로 변경
+@RequestMapping("/api")
 public class HomeController {
     private final MemberService memberService;
 
@@ -23,8 +21,8 @@ public class HomeController {
         return "index";
     }
 
-    @PostMapping("/")
-    public String searchUniversities(@ModelAttribute MemberDTO memberDTO) {
+    @PostMapping("/search")
+    public List<MemberEntity> searchUniversities(@RequestBody MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
         String dormitory = (memberDTO.getDormitory() != null) ? memberDTO.getDormitory() : "No";
         List<MemberEntity> universities = memberService.findUniversitiesByCountryDormitoryAndPeriod(memberDTO.getCountry(), dormitory, memberDTO.getPeriod());
@@ -36,6 +34,6 @@ public class HomeController {
                         university.getName(), university.getCountry(), university.getDormitory(), university.getPeriod());
             }
         }
-        return "index";
+        return universities;
     }
 }
