@@ -8,6 +8,8 @@ import SchoolProject.Backend.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
@@ -26,5 +28,9 @@ public class CommentService {
         comment.setMember(member);
         comment.setContent(commentDTO.getContent());
         return commentRepository.save(comment);
+    }
+
+    public List<Comment> findAllComments() {
+        return commentRepository.findAll();
     }
 }
