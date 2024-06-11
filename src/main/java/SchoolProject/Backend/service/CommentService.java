@@ -26,7 +26,8 @@ public class CommentService {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid member ID"));
         Comment comment = new Comment();
         comment.setMember(member);
-        comment.setContent(commentDTO.getContent());
+        comment.setComments(commentDTO.getComments());
+        comment.setPassword(commentDTO.getPassword());
         return commentRepository.save(comment);
     }
 

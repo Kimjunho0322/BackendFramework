@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController // RestController로 변경
+@RestController
 @RequestMapping("/api")
 public class HomeController {
     private final MemberService memberService;
@@ -16,24 +16,12 @@ public class HomeController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
     @PostMapping("/search")
     public List<MemberEntity> searchUniversities(@RequestBody MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
-        String dormitory = (memberDTO.getDormitory() != null) ? memberDTO.getDormitory() : "No";
+        String dormitory = (memberDTO.getDormitory() != null && memberDTO.getDormitory().equals("Yes")) ? "Yes" : "No";
         List<MemberEntity> universities = memberService.findUniversitiesByCountryDormitoryAndPeriod(memberDTO.getCountry(), dormitory, memberDTO.getPeriod());
-        if (universities.isEmpty()) {
-            System.out.println("No universities found");
-        } else {
-            for (MemberEntity university : universities) {
-                System.out.printf("Matching university: %s, Country: %s, Dormitory: %s, Period: %s\n",
-                        university.getName(), university.getCountry(), university.getDormitory(), university.getPeriod());
-            }
-        }
+        memberService.saveUniversities(universities); // 검색된 대학을 저장하는 메서드 호출
         return universities;
     }
 }
