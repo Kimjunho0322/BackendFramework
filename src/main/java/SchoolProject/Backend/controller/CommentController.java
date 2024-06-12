@@ -12,8 +12,12 @@ public class CommentController {
     private final CommentService commentService;
 
     @PostMapping("/comments")
-    public Comment submitComment(@RequestBody CommentDTO commentDTO) {
+    public CommentDTO submitComment(@RequestBody CommentDTO commentDTO) {
         Comment savedComment = commentService.saveComment(commentDTO);
-        return savedComment;
+        CommentDTO responseDTO = new CommentDTO();
+        responseDTO.setMemberId(savedComment.getMember().getId());
+        responseDTO.setComments(savedComment.getComments());
+        responseDTO.setPassword(savedComment.getPassword());
+        return responseDTO;
     }
 }
