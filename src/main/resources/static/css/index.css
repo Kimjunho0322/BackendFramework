@@ -1,0 +1,400 @@
+:root {
+    --default-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Ubuntu, "Helvetica Neue", Helvetica, Arial, "PingFang SC",
+    "Hiragino Sans GB", "Microsoft Yahei UI", "Microsoft Yahei",
+    "Source Han Sans CN", sans-serif;
+}
+
+.main-container {
+    overflow: hidden;
+}
+
+.main-container,
+.main-container * {
+    box-sizing: border-box;
+}
+
+input,
+select,
+textarea,
+button {
+    outline: 0;
+}
+
+.main-container {
+    position: relative;
+    width: 1440px;
+    margin: 0 auto;
+    background: #ffffff;
+}
+
+.navigation {
+    position: relative;
+    width: 1440px;
+    height: 55px;
+    margin: 0 0 0 0.5px;
+    font-size: 0px;
+    background: #ffffff;
+    z-index: 51;
+    overflow: visible;
+}
+
+.university-search {
+    display: block;
+    position: relative;
+    height: 18px;
+    margin: 19px 0 0 23.5px;
+    color: #000000;
+    font-family: Inter, var(--default-font-family);
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 18px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 53;
+}
+
+.divider {
+    position: relative;
+    width: 1440px;
+    height: 1px;
+    margin: 17px 0 0 0;
+    background: #ececec;
+    z-index: 52;
+}
+
+.header {
+    position: relative;
+    width: 1440px;
+    margin: 0 0 0 0.57px;
+    background: #ffffff;
+    border-top: 1px solid #f2f2f2;
+    z-index: 21;
+    overflow: visible;
+    transition: height 0.3s ease;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 1392px;
+    height: 52.188px;
+    margin: 24px 0 0 24px;
+    background: #f9f9f9;
+    border: 1px solid #cccccc;
+    z-index: 48;
+    overflow: visible;
+    border-radius: 999px;
+}
+
+.icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin: 0px 25px;
+    width: 23px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-button .vector {
+    width: 20.123px;
+    height: 20.123px;
+    top: -1px;
+    background: url(./assets/images/SearchIcon.png) no-repeat center;
+    background-size: 100% 100%;
+}
+
+.vector {
+    position: relative;
+    width: 20.123px;
+    height: 20.123px;
+    margin: 3px 0 0 0;
+    background: url(./assets/images/SearchIcon.png) no-repeat center;
+    background-size: 100% 100%;
+    z-index: 50;
+}
+
+.search-input {
+    flex-grow: 1;
+    margin: 0px -10px;
+    border: none;
+    background: transparent;
+    font-family: var(--default-font-family);
+    font-size: 14px;
+    line-height: 20px;
+}
+
+.flex-row-dc {
+    position: relative;
+    width: 1390.575px;
+    height: 38.206px;
+    margin: 26.794px 0 0 24.425px;
+    z-index: 29;
+}
+
+.filters {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 20px;
+    position: absolute;
+    width: 529px;
+    height: 38px;
+    top: 0;
+    left: 0;
+    z-index: 29;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 1px 12px;
+    cursor: pointer;
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    border-radius: 4px;
+    font-family: Days One, var(--default-font-family);
+    font-size: 13px;
+    font-weight: 400;
+    color: #191919;
+    white-space: nowrap;
+}
+
+.dropdown-icon {
+    width: 18px;
+    height: 18px;
+    margin-right: 0px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    margin-top: 10px;
+
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #f1f1f1;
+}
+
+.caret {
+    width: 7px;
+    height: 36px;
+    background: url(./assets/images/DropdownIcon.png) no-repeat center;
+    background-size: cover;
+    margin-left: auto;
+}
+
+.sort {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 3.206px;
+    right: 91px;
+    bottom: 20px;
+    left: 1270.575px;
+    color: #696969;
+    font-family: Days One, var(--default-font-family);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 28;
+}
+
+.label-c {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 7px;
+    position: absolute;
+    width: 118px;
+    height: 17px;
+    top: 21.206px;
+    left: 1272.575px;
+    z-index: 24;
+}
+
+.recommended {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    width: 104px;
+    height: 17px;
+    color: #191919;
+    font-family: Days One, var(--default-font-family);
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    text-align: center;
+    white-space: nowrap;
+    z-index: 25;
+}
+
+.caret-d {
+    flex-shrink: 0;
+    position: relative;
+    width: 7px;
+    height: 16px;
+    z-index: 26;
+}
+
+.vector-e {
+    position: relative;
+    width: 7px;
+    height: 3.5px;
+    margin: 8px 0 0 0;
+    background: url(./assets/images/DropdownIcon2.png) no-repeat center;
+    background-size: cover;
+    z-index: 27;
+}
+
+.classes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    gap: 24px;
+    position: relative;
+    width: 1336px;
+    margin: 24.813px 0 0 53px;
+    z-index: 1;
+}
+
+.university-search-results {
+    flex-shrink: 0;
+    flex-basis: auto;
+    position: relative;
+    height: 24px;
+    color: #222529;
+    font-family: Inter, var(--default-font-family);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: left;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 20px;
+    position: relative;
+    width: 1336px;
+    z-index: 3;
+}
+
+.row {
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: nowrap;
+    flex-shrink: 0;
+    gap: 20px;
+    position: relative;
+    width: 1336px;
+    z-index: 4;
+}
+
+.university-class {
+    flex-shrink: 0;
+    position: relative;
+    width: 432px;
+    height: 242px;
+    z-index: 5;
+    border-radius: 5px;
+    overflow: hidden;
+    border: 1px solid #e8e8e8;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.university-class:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.university-image {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+.matching-score {
+    padding: 210px 160px;
+    display: block;
+    font-size: 11px;
+    color: #9b9b9b;
+    z-index: 200;
+}
+
+.non-text-decoration {
+    text-decoration: none;
+}
+
+.bookmark {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 10px;
+    z-index: 7;
+    overflow: hidden;
+}
+
+.vector-f {
+    position: relative;
+    width: 20.378px;
+    height: 25.865px;
+    background: url(./assets/images/BookmarkIcon.png) no-repeat center;
+    background-size: 100% 100%;
+    z-index: 8;
+}
+
+.footer {
+    position: relative;
+    width: 1440px;
+    height: 33px;
+    margin: 38.188px 0 0 1px;
+    background: #ffffff;
+    border-bottom: 1px solid #e1e1e1;
+    z-index: 20;
+}

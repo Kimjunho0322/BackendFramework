@@ -1,87 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recommended Universities</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/litepicker/dist/css/litepicker.css"/>
-
-    <style>
-        body { font-family: Arial, sans-serif; }
-        #results ul { list-style-type: none; padding: 0; }
-        #results li { margin: 20px 0; }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>University Search</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Days+One:wght@400&display=swap" />
+    <link rel="stylesheet" href="/css/index.css"/>
 </head>
 <body>
-<h1>대학 추천 사이트</h1>
-<form id="searchForm">
-    <label for="country">Desired Country:</label>
-    <select id="country" name="country" required>
-        <option value="China">China</option>
-        <option value="Japan">Japan</option>
-        <option value="Taiwan">Taiwan</option>
-    </select>
-
-    <label for="period">Desired Period:</label>
-    <select id="period" name="period" required>
-        <option value="Semester">1 Semester</option>
-        <option value="Year">1 Year</option>
-    </select>
-
-    <label for="dormitory">Dormitory:</label>
-    <input type="checkbox" id="dormitory" name="dormitory" value="Yes"> Yes
-
-    <button type="submit">Search</button>
-</form>
-
-<div id="results">
-    <h3>Search Results</h3>
-    <ul id="results-list"></ul>
+<div class="main-container">
+    <div class="navigation">
+        <span class="university-search">University Matching System</span>
+        <div class="divider"></div>
+    </div>
+    <div class="header">
+        <div class="search">
+            <button type="submit" class="icon-button">
+                <div class="vector"></div>
+            </button>
+            <input type="text" class="search-input" placeholder="Enter the requirements of the university that AI wants..." />
+        </div>
+        <div class="flex-row-dc">
+            <div class="filters">
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <img src="./assets/images/desired_country_icon.png" class="dropdown-icon" alt="Country Icon" />
+                        Country: <span id="country">None</span>
+                        <div class="caret"></div>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="selectOption('country', 'China')">China</a>
+                        <a href="#" onclick="selectOption('country', 'Japan')">Japan</a>
+                        <a href="#" onclick="selectOption('country', 'Taiwan')">Taiwan</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <img src="./assets/images/desired_period_icon.png" class="dropdown-icon" alt="Period Icon" />
+                        Period: <span id="period">None</span>
+                        <div class="caret"></div>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="selectOption('period', '1 Semester')">1 Semester</a>
+                        <a href="#" onclick="selectOption('period', '1 Year')">1 Year</a>
+                    </div>
+                </div>
+                <div class="dropdown">
+                    <button class="dropbtn">
+                        <img src="./assets/images/dormitory_icon.png" class="dropdown-icon" alt="Dormitory Icon" />
+                        Dormitory: <span id="dormitory">None</span>
+                        <div class="caret"></div>
+                    </button>
+                    <div class="dropdown-content">
+                        <a href="#" onclick="selectOption('dormitory', 'Yes')">Yes</a>
+                        <a href="#" onclick="selectOption('dormitory', 'No')">No</a>
+                    </div>
+                </div>
+            </div>
+            <span class="sort">Sort</span>
+            <div class="label-c">
+                <span class="recommended">Recommended</span>
+                <div class="caret-d"><div class="vector-e"></div></div>
+            </div>
+        </div>
+    </div>
+    <div class="classes">
+        <span class="university-search-results">University search results</span>
+        <div class="container">
+            <div class="row">
+                <div class="university-class">
+                    <a href="beijing-university.html" class="non-text-decoration">
+                        <div class="bookmark"><div class="vector-f"></div></div>
+                        <div class="university-image" style="background-image: url('./assets/images/2128c81c-92a7-401e-aab3-f5c3701b8361.png');">
+                            <span class="matching-score">Matching Score: 85%</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="university-class">
+                    <a href="tokyo-university.html" class="non-text-decoration">
+                        <div class="bookmark"><div class="vector-f"></div></div>
+                        <div class="university-image" style="background-image: url('');">
+                            <span class="matching-score">Matching Score: 70%</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="university-class">
+                    <a href="kyung-hee-university.html" class="non-text-decoration">
+                        <div class="bookmark"><div class="vector-f"></div></div>
+                        <div class="university-image" style="background-image: url('');">
+                            <span class="matching-score">Matching Score: 70%</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="university-class">
+                    <a href="seoul-university.html" class="non-text-decoration">
+                        <div class="bookmark"><div class="vector-f"></div></div>
+                        <div class="university-image" style="background-image: url('');">
+                            <span class="matching-score">Matching Score: 65%</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer"></div>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#searchForm').on('submit', function(event) {
-            event.preventDefault();
-
-            const data = {
-                country: $('#country').val(),
-                period: $('#period').val(),
-                dormitory: $('#dormitory').is(':checked') ? 'Yes' : 'No'
-            };
-
-            $.ajax({
-                url: '/api/search',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-                success: function(response) {
-                    $('#results-list').empty();
-                    if (response.length === 0) {
-                        $('#results-list').append('<li>No universities found</li>');
-                    } else {
-                        response.forEach(function(university) {
-                            $('#results-list').append(
-                                '<li>' +
-                                '<h4>' + university.name + '</h4>' +
-                                '<p><strong>Location:</strong> ' + university.country + '</p>' +
-                                '<p><strong>Dormitory Available:</strong> ' + university.dormitory + '</p>' +
-                                '<p><strong>Period:</strong> ' + university.period + '</p>' +
-                                '<p><strong>Link:</strong> <a href="' + university.link + '" target="_blank">' + university.link + '</a></p>' +
-                                '</li>'
-                            );
-                        });
-                    }
-                },
-                error: function(error) {
-                    console.error('Error:', error);
-                    $('#results-list').append('<li>An error occurred</li>');
-                }
-            });
-        });
-    });
-</script>
+<script src="/js/index.js"></script>
 </body>
 </html>
