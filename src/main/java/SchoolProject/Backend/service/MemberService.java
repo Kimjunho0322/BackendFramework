@@ -1,24 +1,26 @@
 package SchoolProject.Backend.service;
 
 import SchoolProject.Backend.entity.MemberEntity;
+import SchoolProject.Backend.entity.UniversityEntity;
 import SchoolProject.Backend.repository.MemberRepository;
+import SchoolProject.Backend.repository.UniversityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 @Service
 public class MemberService {
     private final MemberRepository memberRepository;
+    private final UniversityRepository universityRepository;
     private static final Logger LOGGER = Logger.getLogger(MemberService.class.getName());
 
     @Autowired
-    public MemberService(MemberRepository memberRepository) {
+    public MemberService(MemberRepository memberRepository, UniversityRepository universityRepository) {
         this.memberRepository = memberRepository;
+        this.universityRepository = universityRepository;
     }
 
     public List<MemberEntity> findUniversitiesByCountryDormitoryAndPeriod(String country, String dormitory, String period) {
@@ -28,12 +30,18 @@ public class MemberService {
         for (MemberEntity university : universities) {
             System.out.println("University fetched: " + university.getName() + ", " + university.getCountry() + ", " + university.getDormitory() + ", Period: " + university.getPeriod());
         }
-        Set<MemberEntity> uniqueUniversities = new HashSet<>(universities);
-        System.out.println("Unique universities count after removing duplicates: " + uniqueUniversities.size());
+        return universities;
+    }
 
-        for (MemberEntity uniqueUniversity : uniqueUniversities) {
-            System.out.println("Unique university: " + uniqueUniversity.getName() + ", " + uniqueUniversity.getCountry() + ", " + uniqueUniversity.getDormitory() + ", Period: " + uniqueUniversity.getPeriod());
-        }
-        return new ArrayList<>(uniqueUniversities);
+    public void saveUniversities(List<MemberEntity> universities) {
+        List<UniversityEntity> universityEntities = universities.stream().map(memberEntity -> {
+            UniversityEntity universityEntity = new UniversityEntity();
+            universityEntity.setName(memberEntity.getName());
+            universityEntity.setCountry(memberEntity.getCountry());
+            universityEntity.setDormitory(memberEntity.getDormitory());
+            universityEntity.setPeriod(memberEntity.getPeriod());
+            return universityEntity;
+        }).collect(Collectors.toList());
+        universityRepository.saveAll(universityEntities);
     }
 }

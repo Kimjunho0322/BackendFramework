@@ -3,14 +3,12 @@ package SchoolProject.Backend.controller;
 import SchoolProject.Backend.dto.MemberDTO;
 import SchoolProject.Backend.entity.MemberEntity;
 import SchoolProject.Backend.service.MemberService;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/api")
 public class HomeController {
     private final MemberService memberService;
 
@@ -18,24 +16,12 @@ public class HomeController {
         this.memberService = memberService;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "index";
-    }
-
-    @PostMapping("/")
-    public String searchUniversities(@ModelAttribute MemberDTO memberDTO) {
+    @PostMapping("/search")
+    public List<MemberEntity> searchUniversities(@RequestBody MemberDTO memberDTO) {
         System.out.println("memberDTO = " + memberDTO);
-        String dormitory = (memberDTO.getDormitory() != null) ? memberDTO.getDormitory() : "No";
+        String dormitory = (memberDTO.getDormitory() != null && memberDTO.getDormitory().equals("Yes")) ? "Yes" : "No";
         List<MemberEntity> universities = memberService.findUniversitiesByCountryDormitoryAndPeriod(memberDTO.getCountry(), dormitory, memberDTO.getPeriod());
-        if (universities.isEmpty()) {
-            System.out.println("No universities found");
-        } else {
-            for (MemberEntity university : universities) {
-                System.out.printf("Matching university: %s, Country: %s, Dormitory: %s, Period: %s\n",
-                        university.getName(), university.getCountry(), university.getDormitory(), university.getPeriod());
-            }
-        }
-        return "index";
+        memberService.saveUniversities(universities); // 검색된 대학을 저장하는 메서드 호출
+        return universities;
     }
 }
