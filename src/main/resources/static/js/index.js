@@ -1,3 +1,5 @@
+console.log('index.js is loaded');
+
 document.addEventListener('DOMContentLoaded', () => {
     const dropdowns = document.querySelectorAll('.dropdown');
 
@@ -31,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const header = document.querySelector('.header');
         if (openDropdown) {
             const dropdownHeight = openDropdown.offsetHeight;
-            header.style.height = ${163.188 + dropdownHeight}px;
+            header.style.height = `${163.188 + dropdownHeight}px`;
         } else {
             header.style.height = 'auto';
         }
@@ -40,10 +42,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function selectOption(type, value) {
     if (type === 'country') {
-        document.getElementById('selected-country').innerText = value;
+        document.getElementById('country').innerText = value;
     } else if (type === 'period') {
-        document.getElementById('selected-period').innerText = value;
+        document.getElementById('period').innerText = value;
     } else if (type === 'dormitory') {
-        document.getElementById('selected-dormitory').innerText = value;
+        document.getElementById('dormitory').innerText = value;
     }
 }
