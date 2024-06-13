@@ -27,9 +27,6 @@ public class MemberEntity {
     @Column(name = "period")
     private String period;
 
-    @Column(name = "link")
-    private String link;
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -38,12 +35,11 @@ public class MemberEntity {
         return Objects.equals(id, that.id) &&
                 Objects.equals(country, that.country) &&
                 Objects.equals(dormitory, that.dormitory) &&
-                Objects.equals(period, that.period) &&
-                Objects.equals(link, that.link);
+                Objects.equals(period, that.period);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, country, dormitory, period, link);
+        return Objects.hash(id, country, dormitory, period);
     }
 }

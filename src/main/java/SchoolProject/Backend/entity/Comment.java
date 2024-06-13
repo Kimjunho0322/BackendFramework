@@ -18,12 +18,10 @@ public class Comment {
     @JoinColumn(name = "member_id", nullable = false)
     private MemberEntity member;
 
-    @Column(name = "comments", nullable = false)
-    private String comments;
-
-    @Column(name = "password", nullable = false)
-    private String password;
+    @Column(name = "content", nullable = false)
+    private String content;
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
+    
 }

@@ -8,80 +8,61 @@
 
     <style>
         body { font-family: Arial, sans-serif; }
-        #results ul { list-style-type: none; padding: 0; }
-        #results li { margin: 20px 0; }
     </style>
 </head>
 <body>
-<h1>대학 추천 사이트</h1>
-<form id="searchForm">
-    <label for="country">Desired Country:</label>
-    <select id="country" name="country" required>
-        <option value="China">China</option>
-        <option value="Japan">Japan</option>
-        <option value="Taiwan">Taiwan</option>
-    </select>
+    <h1>대학 추천 사이트</h1>
+    <form id="searchForm" method="post" action="/">
+        <label for="country">Desired Country:</label>
+        <select id="country" name="country" required>
+            <option value="China">China</option>
+            <option value="Japan">Japan</option>
+            <option value="Taiwan1">Taiwan</option>
+        </select>
 
-    <label for="period">Desired Period:</label>
-    <select id="period" name="period" required>
-        <option value="Semester">1 Semester</option>
-        <option value="Year">1 Year</option>
-    </select>
+        <label for="period">Desired Period:</label>
+        <select id="period" name="period" required>
+            <option value="Semester">1 Semester</option>
+            <option value="Year">1 Year</option>
+        </select>
 
-    <label for="dormitory">Dormitory:</label>
-    <input type="checkbox" id="dormitory" name="dormitory" value="Yes"> Yes
 
-    <button type="submit">Search</button>
-</form>
+        <label for="dormitory">Dormitory:</label>
+        <input type="checkbox" id="dormitory" name="dormitory" value="Yes"> Yes
 
-<div id="results">
-    <h3>Search Results</h3>
-    <ul id="results-list"></ul>
-</div>
+        <button type="submit">Search</button>
+    </form>
 
-<script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#searchForm').on('submit', function(event) {
-            event.preventDefault();
+    <div id="results">
+        <h3>Example Results</h3>
+        <ul>
+            <li>
+                <img src="university1.jpg" alt="University 1 Image" style="width:200px;height:120px;">
+                <h4>Beijing University</h4>
+                <p><strong>Location:</strong> Beijing, China</p>
+                <p><strong>Dormitory Available:</strong> Yes</p>
+                <p><strong>Matching Score:</strong> 85%</p>
+            </li>
+            <li>
+                <img src="university2.jpg" alt="University 2 Image" style="width:200px;height:120px;">
+                <h4>Tokyo Institute of Technology</h4>
+                <p><strong>Location:</strong> Tokyo, Japan</p>
+                <p><strong>Dormitory Available:</strong> No</p>
+                <p><strong>Matching Score:</strong> 80%</p>
+            </li>
+        </ul>
+    </div>
 
-            const data = {
-                country: $('#country').val(),
-                period: $('#period').val(),
-                dormitory: $('#dormitory').is(':checked') ? 'Yes' : 'No'
-            };
-
-            $.ajax({
-                url: '/api/search',
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(data),
-                success: function(response) {
-                    $('#results-list').empty();
-                    if (response.length === 0) {
-                        $('#results-list').append('<li>No universities found</li>');
-                    } else {
-                        response.forEach(function(university) {
-                            $('#results-list').append(
-                                '<li>' +
-                                '<h4>' + university.name + '</h4>' +
-                                '<p><strong>Location:</strong> ' + university.country + '</p>' +
-                                '<p><strong>Dormitory Available:</strong> ' + university.dormitory + '</p>' +
-                                '<p><strong>Period:</strong> ' + university.period + '</p>' +
-                                '<p><strong>Link:</strong> <a href="' + university.link + '" target="_blank">' + university.link + '</a></p>' +
-                                '</li>'
-                            );
-                        });
-                    }
-                },
-                error: function(error) {
-                    console.error('Error:', error);
-                    $('#results-list').append('<li>An error occurred</li>');
-                }
-            });
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/litepicker.js"></script>
+    <script>
+        const picker = new Litepicker({ 
+            element: document.getElementById('date-range'),
+            singleMode: false,
+            allowRepick: true,
+            format: 'YYYY-MM-DD'
         });
-    });
-</script>
+    </script>
 </body>
 </html>
+
+
